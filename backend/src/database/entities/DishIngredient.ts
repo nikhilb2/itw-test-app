@@ -1,27 +1,24 @@
-import {
-  Entity,
-  ManyToOne,
-  Cascade,
-  PrimaryKeyType,
-  Unique,
-  PrimaryKey,
-} from '@mikro-orm/core';
+import { Entity, ManyToOne, PrimaryKeyType, Unique } from '@mikro-orm/core';
+
 import { DishEntity } from './Dish';
 import { IngredientEntity } from './Ingredient';
 
 @Entity({ tableName: 'dish_ingredients' })
 @Unique({ properties: ['dish', 'ingredient'] })
 export class DishIngredientEntity {
-  constructor(init: Pick<DishIngredientEntity, keyof DishIngredientEntity>) {
+  constructor(init: { dish: DishEntity; ingredient: IngredientEntity }) {
     this.dish = init.dish;
     this.ingredient = init.ingredient;
   }
+
+  [PrimaryKeyType]: [string, string];
 
   @ManyToOne({
     primary: true,
     entity: () => DishEntity,
     name: 'dish_id',
-    cascade: [Cascade.ALL],
+    onUpdateIntegrity: 'cascade',
+    onDelete: 'cascade',
     nullable: false,
     columnType: 'uuid',
   })
@@ -31,11 +28,10 @@ export class DishIngredientEntity {
     primary: true,
     entity: () => IngredientEntity,
     name: 'ingredient_id',
-    cascade: [Cascade.ALL],
+    onUpdateIntegrity: 'cascade',
+    onDelete: 'cascade',
     nullable: false,
     columnType: 'uuid',
   })
   ingredient: IngredientEntity;
-
-  [PrimaryKeyType]: [string, string];
 }
