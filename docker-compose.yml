@@ -1,14 +1,12 @@
 version: '3'
 services:
-    database: 
-        image: postgres:12
-        restart: always
-        ports:
-            - "5432:5432"
-        env_file:
-            - database/database.env # configure postgres
-        volumes: 
-            - ./postgres-data:/var/lib/postgresql/data
-        # volumes:
-        #     - database-data:/var/lib/postgresql/data/
-
+  database:
+    image: postgres:13.2-alpine
+    restart: always
+    ports:
+        - "5432:5432"
+    env_file:
+        - ./.database.env
+    volumes:
+      - ./.pg:/var/lib/postgresql/data
+      - .psqlrc:/root/.psqlrc:ro

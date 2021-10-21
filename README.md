@@ -2,26 +2,31 @@
 
 ## Install
 
-* [Docker desktop](https://www.docker.com/products/docker-desktop) on your local machine.
+* Node.js (>= v14.16)
+* Yarn (v1.x)
+* [Docker](https://www.docker.com/products/docker-desktop) on your local machine.
 (version)
 
-* NodeJS
+## Backend
 
+The main technologies used are: Node (v14), Nest.js (v7), Typescript (v4) and Postgres (v13.2). Mikro-ORM is used as an ORM.
 
-## Runing project
+## Frontend
 
-1. Download image: ```docker-compose up```
-2. Run database: ```docker-compose run database```
+The main technologies used are: React (v17), Next.js (v10), Typescript (v4) and Tailwind (v1).
 
-    with bash: ```docker-compose run database bash```
+## Setup & Run
 
+1. Create and run database: `docker-compose up -d`
+2. Migrate database schema: `(cd backend && yarn run migration:up)`
+3. Seed database with data: `(cd backend && yarn run seeds:up)`
+4. Start backend server: `(cd backend && yarn run dev)`
+5. Start frontend server: `(cd frontend && yarn run dev)`
 
-### Database
+## Ports
 
-* Connecting to database: 
-
-    Run in database bash
-    ```psql --host=database --username=test_user --dbname=test_database```
-    >Check right db, user credentials in *database.env*.
-
-
+```
+3000 Backend server
+3001 Frontend server
+5432 Postgres
+```
