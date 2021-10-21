@@ -1,11 +1,12 @@
 version: '3'
 services:
   database:
-    image: postgres:12
+    image: postgres:13.2-alpine
     restart: always
     ports:
         - "5432:5432"
     env_file:
         - ./.database.env
     volumes:
-        - ./postgres-data:/var/lib/postgresql/data
+      - ./.pg:/var/lib/postgresql/data
+      - .psqlrc:/root/.psqlrc:ro

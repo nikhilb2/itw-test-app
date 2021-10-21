@@ -1,14 +1,15 @@
 {
-  "name": "itw-test-app",
+  "name": "itw-test-app-backend",
   "private": true,
   "version": "0.0.0",
-  "description": "Test App",
-  "license": "MIT",
+  "engines": {
+    "node": "^14.16"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "dev": "nest start --watch",
-    "start": "node dist/main",
+    "dev": "PORT=3001 nest start --watch",
+    "start": "PORT=3001 node dist/main",
     "lint": "eslint --ext ts,js",
     "migration:create": "./bin/run-ts-node src/database/migrator.ts create",
     "migration:down": "./bin/run-ts-node src/database/migrator.ts down",
