@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import Head from 'next/head';
 import { ComponentPropsWithoutRef } from 'react';
 import { HiThumbUp, HiThumbDown, HiOutlinePlus, HiOutlineMinus } from 'react-icons/hi';
 import { useQuery } from 'react-query';
@@ -54,22 +55,27 @@ export default function Home() {
   });
 
   return (
-    <ul className="p-4 mx-auto max-w-5xl">
-      {(dishesQuery.data ?? []).map((dish, index) => (
-        <li className={clsx('flex', index !== 0 && 'mt-4')} key={dish.id}>
-          <Product className="flex-grow" dish={dish} />
-          <Pipe />
-          <div className="border flex items-center rounded p-4">
-            <Button className="inline-flex items-center justify-center h-8 w-8">
-              <HiOutlinePlus className="h-5 w-5" />
-            </Button>
-            <span className="mx-2 text-xl">0</span>
-            <Button className="inline-flex items-center justify-center h-8 w-8">
-              <HiOutlineMinus className="h-5 w-5" />
-            </Button>
-          </div>
-        </li>
-      ))}
-    </ul>
+    <>
+      <Head>
+        <title>Restaurant App - Home</title>
+      </Head>
+      <ul className="p-4 mx-auto max-w-5xl">
+        {(dishesQuery.data ?? []).map((dish, index) => (
+          <li className={clsx('flex', index !== 0 && 'mt-4')} key={dish.id}>
+            <Product className="flex-grow" dish={dish} />
+            <Pipe />
+            <div className="border flex items-center rounded p-4">
+              <Button className="inline-flex items-center justify-center h-8 w-8">
+                <HiOutlinePlus className="h-5 w-5" />
+              </Button>
+              <span className="mx-2 text-xl">0</span>
+              <Button className="inline-flex items-center justify-center h-8 w-8">
+                <HiOutlineMinus className="h-5 w-5" />
+              </Button>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
