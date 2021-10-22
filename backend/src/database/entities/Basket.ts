@@ -3,9 +3,9 @@ import { v4 } from 'uuid';
 
 @Entity({ tableName: 'basket' })
 export class BasketEntity {
-  constructor(init: { id?: string; discount_rate: number; payed: boolean }) {
+  constructor(init: { id?: string; discount: number; payed: boolean }) {
     this.id = init.id ?? v4();
-    this.discount_rate = init.discount_rate ?? 0;
+    this.discount = init.discount ?? 0;
     this.payed = init.payed ?? false;
   }
 
@@ -13,7 +13,7 @@ export class BasketEntity {
   id: string;
 
   @Property({ columnType: 'integer', default: 0 })
-  discount_rate: number;
+  discount: number;
 
   @Property({ columnType: 'boolean', default: false })
   payed: boolean;
