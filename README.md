@@ -9,10 +9,12 @@
 
 ## Backend
 
+Code in /backend
 The main technologies used are: Node (v14), Nest.js (v7), Typescript (v4) and Postgres (v13.2). Mikro-ORM is used as an ORM.
 
 ## Frontend
 
+Code in /frontend
 The main technologies used are: React (v17), Next.js (v10), Typescript (v4) and Tailwind (v1).
 
 ## Setup & Run
