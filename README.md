@@ -31,3 +31,4 @@ The main technologies used are: React (v17), Next.js (v10), Typescript (v4) and 
 3001 Frontend server
 5432 Postgres
 ```
+
