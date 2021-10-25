@@ -1,18 +1,17 @@
-import { Entity, PrimaryKey, ManyToOne } from '@mikro-orm/core';
+import { Entity, PrimaryKeyType, ManyToOne, Property, Unique } from '@mikro-orm/core';
 import { v4 } from 'uuid';
 import { DishEntity } from './Dish';
 import { BasketEntity } from './Basket';
 
 @Entity({ tableName: 'basket_dish' })
+@Unique({ properties: ['basket_id', 'dish_id'] })
 export class BasketDishEntity {
-  constructor(init: { id?: string; basket_id: BasketEntity; dish_id: DishEntity }) {
-    this.id = init.id ?? v4();
+  constructor(init: { basket_id: BasketEntity; dish_id: DishEntity }) {
     this.basket_id = init.basket_id;
     this.dish_id = init.dish_id;
   }
 
-  @PrimaryKey({ columnType: 'uuid', defaultRaw: 'gen_random_uuid()' })
-  id: string;
+  [PrimaryKeyType]: [string, string];
 
   @ManyToOne({
     primary: true,
@@ -35,4 +34,7 @@ export class BasketDishEntity {
     columnType: 'uuid',
   })
   dish_id: DishEntity;
+
+  @Property({ columnType: 'integer', default: 1 })
+  quantity: number;
 }

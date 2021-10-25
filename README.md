@@ -3,7 +3,7 @@
 ## Install
 
 * Node.js (>= v14.16)
-* Yarn (v1.x)
+* Yarn (v1.x) 
 * [Docker](https://www.docker.com/products/docker-desktop) on your local machine.
 (version)
 
