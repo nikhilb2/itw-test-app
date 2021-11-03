@@ -1,4 +1,4 @@
-import { Entity, Property, Unique, PrimaryKey } from '@mikro-orm/core';
+import { Entity, Property, Unique, PrimaryKey, Enum } from '@mikro-orm/core';
 import { v4 } from 'uuid';
 
 export enum DishType {
@@ -31,7 +31,7 @@ export class DishEntity {
   @Unique()
   name: string;
 
-  @Property({ columnType: 'dish_type_enum', name: 'dish_type', nullable: false })
+  @Enum(() => DishType)
   dishType: DishType;
 
   @Property({ columnType: 'real', nullable: false })

@@ -2,10 +2,10 @@ import { EntityManager, QueryOrder } from '@mikro-orm/core';
 import { Controller, Get, Post, Body, Param, Delete, Patch, UseInterceptors } from '@nestjs/common';
 import { dropUndefined } from 'src/utils/misc';
 
-import { DishEntity, DishIngredientEntity, IngredientEntity } from '../database/entities';
+import { DishEntity, DishIngredientEntity, IngredientEntity } from '../../database/entities';
 
 import { CreateDishDTO, DishParams, UpdateDishDTO } from './dto/dish.dto';
-import { PgQueryErrorInterceptor } from './interceptors';
+import { PgQueryErrorInterceptor } from '../interceptors';
 
 @Controller('dishes')
 @UseInterceptors(PgQueryErrorInterceptor)

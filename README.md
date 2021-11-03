@@ -1,6 +1,10 @@
 # itw-tests
 
-## Install
+Welcome to the Restaurant App, a demo/dummy web application which permits to the restaurant's customers to order food and developpers to show their skills ;)
+
+The project is written in Ja
+
+## Prerequisit installation
 
 * Node.js (>= v14.16)
 * Yarn (v1.x) 

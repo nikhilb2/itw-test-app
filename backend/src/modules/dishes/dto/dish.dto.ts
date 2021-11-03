@@ -10,7 +10,7 @@ import {
   IsUUID,
 } from 'class-validator';
 
-import { DishType } from '../../database/entities';
+import { DishType } from '../../../database/entities';
 
 function IsOptionalNotNull() {
   return applyDecorators(IsOptional(), IsNotIn([null]));

@@ -4,11 +4,11 @@ import { DishEntity } from './Dish';
 import { BasketEntity } from './Basket';
 
 @Entity({ tableName: 'basket_dish' })
-@Unique({ properties: ['basket_id', 'dish_id'] })
+@Unique({ properties: ['basket', 'dish'] })
 export class BasketDishEntity {
-  constructor(init: { basket_id: BasketEntity; dish_id: DishEntity }) {
-    this.basket_id = init.basket_id;
-    this.dish_id = init.dish_id;
+  constructor(init: { basket: BasketEntity; dish: DishEntity }) {
+    this.basket = init.basket;
+    this.dish = init.dish;
   }
 
   [PrimaryKeyType]: [string, string];
@@ -16,13 +16,13 @@ export class BasketDishEntity {
   @ManyToOne({
     primary: true,
     entity: () => BasketEntity,
-    name: 'dish_id',
+    name: 'basket_id',
     onUpdateIntegrity: 'cascade',
     onDelete: 'cascade',
     nullable: false,
     columnType: 'uuid',
   })
-  basket_id: BasketEntity;
+  basket: BasketEntity;
 
   @ManyToOne({
     primary: true,
@@ -33,7 +33,7 @@ export class BasketDishEntity {
     nullable: false,
     columnType: 'uuid',
   })
-  dish_id: DishEntity;
+  dish: DishEntity;
 
   @Property({ columnType: 'integer', default: 1 })
   quantity: number;

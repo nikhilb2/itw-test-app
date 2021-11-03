@@ -3,7 +3,7 @@ import { v4 } from 'uuid';
 
 @Entity({ tableName: 'basket' })
 export class BasketEntity {
-  constructor(init: { id?: string; discount: number; payed: boolean }) {
+  constructor(init: { id?: string; payed?: boolean }) {
     this.id = init.id ?? v4();
     this.payed = init.payed ?? false;
   }
