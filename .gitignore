@@ -118,3 +118,7 @@ dist
 
 # Postgres volume
 .pg/*
+
+
+# Migration files
+src/database/migrations/*
