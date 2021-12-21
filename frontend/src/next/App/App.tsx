@@ -15,9 +15,8 @@ function NavAnchorWithoutRef(props: ComponentPropsWithoutRef<'a'>, ref?: Ref<HTM
 const NavAnchor = forwardRef(NavAnchorWithoutRef);
 
 function App({ Component, pageProps }: AppInitialProps & AppProps) {
-  const queryClientRef = useRef<QueryClient | null>(null);
-
-  if (!queryClientRef.current) {
+  const queryClientRef = useRef<QueryClient | null>(null);  
+    if (!queryClientRef.current) {
     queryClientRef.current = new QueryClient({
       defaultOptions: {
         queries: {

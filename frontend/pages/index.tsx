@@ -1,53 +1,15 @@
 import clsx from 'clsx';
 import Head from 'next/head';
-import { ComponentPropsWithoutRef } from 'react';
 import { HiThumbUp, HiThumbDown, HiOutlinePlus, HiOutlineMinus } from 'react-icons/hi';
 import { useQuery } from 'react-query';
 
 import Pipe from '@/components/Pipe';
 import api from '@/modules/api';
 import { Dish } from '@/types/data';
+import { pluralize } from '@/utils';
+import Product, { Button } from '@/components/Product';
 
-function pluralize(count: number, singular: string, plural: string) {
-  return Math.abs(count) === 1 ? singular : plural;
-}
 
-function Button(props: ComponentPropsWithoutRef<'button'>) {
-  return <button {...props} className={clsx(props.className, 'hover:text-blue-dark')} />;
-}
-
-function Product({ className, dish }: { className?: string; dish: Dish }) {
-  return (
-    <div className={clsx(className, 'border rounded p-4 flex justify-between items-start')}>
-      <div>
-        <strong>{dish.name}</strong>
-        {dish.ingredients.length > 0 ? (
-          <p className="text-blue-dark">
-            {dish.ingredients.map((ingredient) => ingredient.name).join(', ')}
-          </p>
-        ) : (
-          <p className="text-sea-grey">no ingredients</p>
-        )}
-      </div>
-      <Pipe />
-      <div className="text-right flex-shrink-0">
-        <strong className="text-xl">{dish.price.toFixed(2)} €</strong>
-        <br />
-        <div>
-          {dish.likes} {pluralize(dish.likes, 'like', 'likes')}
-          <Pipe />
-          <Button type="button">
-            <HiThumbUp className="inline-block w-4 h-4" /> Like
-          </Button>
-          <Pipe />
-          <Button type="button">
-            <HiThumbDown className="inline-block w-4 h-4" /> Dislike
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default function Home() {
   const dishesQuery = useQuery('GetDishes', () => api.get<Dish[]>('/dishes'), {
